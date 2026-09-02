@@ -16,13 +16,6 @@ Molecular Galaxy Atlas（MGA，分子星系圖鑑）把分子存在的「化學�
 
 選定分子後繼續放大，星體會展開成一個有恆星與行星的小系統。恆星的大小和行星的數量並不是隨機決定的，猜猜看，它們分別和分子的什麼化學性質有關？
 
-<details>
-<summary>揭曉星體設計</summary>
-
-恆星大小對應分子量；環繞恆星的行星數量，對應分子的氫鍵供體數（HBD）。
-
-</details>
-
 **線上探索：** https://studio6-02.github.io/MGA-public/
 
 ## 公開資料
