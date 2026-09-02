@@ -1,0 +1,22 @@
+{
+  "name": "Molecular Galaxy Atlas",
+  "short_name": "MGA",
+  "description": "Explore 3,000 source-tracked molecules across ten interactive chemical galaxies.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#04050d",
+  "theme_color": "#04050d",
+  "icons": [
+    {
+      "src": "./icons/mga-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/mga-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

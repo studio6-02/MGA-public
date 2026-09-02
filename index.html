@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore 3,000 source-tracked molecules across ten interactive chemical galaxies." />
+    <meta name="theme-color" content="#04050d" />
+    <meta property="og:title" content="Molecular Galaxy Atlas" />
+    <meta property="og:description" content="Explore 3,000 source-tracked molecules across ten interactive chemical galaxies." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Molecular Galaxy Atlas" />
+    <meta property="og:url" content="https://studio6-02.github.io/MGA-public/" />
+    <meta property="og:image" content="https://studio6-02.github.io/MGA-public/icons/mga-icon-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <title>Molecular Galaxy Atlas</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div class="frame"></div>
+    <div class="scan"></div>
+
+    <header class="hud top">
+      <div class="brand">
+        <img class="brand-mark" src="./icons/mga-icon-512.png" alt="" width="48" height="48" />
+        <div class="brand-copy">
+          <div class="eyebrow">MGA · static chemical space atlas</div>
+          <h1>Molecular <span>Galaxy Atlas</span></h1>
+        </div>
+      </div>
+      <div class="meta">
+        <div><b id="molecule-count">0</b> molecules</div>
+        <div><b id="reference-count">0</b> source checked</div>
+        <div><b id="galaxy-count">0</b> galaxies</div>
+      </div>
+    </header>
+
+    <section class="search">
+      <div class="search-row">
+        <span class="dot"></span>
+        <input id="search-input" type="text" placeholder="Search: caffeine, glucose, benzene..." autocomplete="off" />
+      </div>
+      <div class="suggestions" id="suggestions"></div>
+      <div class="hint">drag to orbit · scroll to zoom · click a molecule · Enter to fly · Esc to deselect</div>
+    </section>
+
+    <aside class="info" id="info-card">
+      <div class="card-kicker" id="card-id">Select a molecule</div>
+      <h2 id="card-name">Molecular Galaxy Atlas</h2>
+      <div class="card-family" id="card-family">Phase 1 scaffold</div>
+      <div class="badges" id="card-badges" aria-live="polite"></div>
+      <div class="grid">
+        <div><span>MW g/mol</span><b id="card-mw">-</b></div>
+        <div><span>H-donors</span><b id="card-hbd">-</b></div>
+      </div>
+      <div class="fact-block">
+        <p class="fact" id="card-fact">Thousands of real, source-tracked molecules form ten chemical galaxies, revealing the diversity of chemical space.</p>
+        <a class="fact-source-link hidden" id="card-fact-source" target="_blank" rel="noopener noreferrer">Reference</a>
+      </div>
+      <a class="source-link" id="card-source" href="#" target="_blank" rel="noreferrer">Source</a>
+      <div class="structure">
+        <span class="tag" id="structure-tag">2D structure</span>
+        <svg id="structure-svg" viewBox="0 0 300 190" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+    </aside>
+
+    <aside class="legend" id="legend">
+      <div class="legend-head">
+        <span>Galaxies</span>
+        <button id="toggle-all" type="button">dim all</button>
+      </div>
+    </aside>
+
+    <div class="status-bar">
+      <div class="locus" id="locus">focus: <b>intergalactic view</b></div>
+      <button id="reset-view" type="button" class="reset-button">reset</button>
+    </div>
+    <div class="loading" id="loading">LOADING MGA DATASET...</div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

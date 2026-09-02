@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "studio6-02/MGA",
+  "sourceCommit": "6200eaf",
+  "generatedAt": "2026-09-02T02:17:33.293Z",
+  "moleculeCount": 3045,
+  "referenceCount": 3045,
+  "factCount": 228,
+  "familyCount": 10,
+  "datasetSha256": "78e6f4531dcd0d91fd401152b3fae11e3a056f0a8b7299bd6a4853790b305053"
+}
