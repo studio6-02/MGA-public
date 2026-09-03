@@ -662,6 +662,16 @@ canvas {
   border-radius: 0 8px 8px 0;
 }
 
+.intro-page p.intro-tip {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--dim);
+}
+
+.intro-tip b {
+  color: #bfe6ff;
+}
+
 .intro-flash-demo {
   display: grid;
   grid-template-columns: 1fr 1fr;
