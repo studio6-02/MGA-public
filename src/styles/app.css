@@ -553,3 +553,499 @@ canvas {
     display: none;
   }
 }
+
+/* Intro / onboarding overlay */
+.intro-open {
+  position: fixed;
+  z-index: 18;
+  left: 18px;
+  bottom: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.intro-open:hover {
+  border-color: var(--accent);
+  transform: scale(1.08);
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.intro[hidden] {
+  display: none;
+}
+
+.intro-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 4, 10, 0.74);
+  backdrop-filter: blur(4px);
+}
+
+.intro-dialog {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 28px 30px 22px;
+  border-radius: 14px;
+  background: rgba(9, 13, 30, 0.95);
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(127, 211, 255, 0.06);
+  animation: intro-rise 0.28s ease;
+}
+
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.intro-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--dim);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.intro-close:hover {
+  color: var(--ink);
+}
+
+.intro-title {
+  margin: 0 0 14px;
+  font-size: 19px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.intro-page p {
+  margin: 0 0 14px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.intro-page b {
+  color: #bfe6ff;
+  font-weight: 600;
+}
+
+.intro-flash {
+  padding: 12px 14px;
+  border-left: 2px solid var(--accent);
+  background: rgba(127, 211, 255, 0.06);
+  border-radius: 0 8px 8px 0;
+}
+
+.intro-flash-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.demo-cell {
+  padding: 16px 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: radial-gradient(120% 120% at 50% 38%, rgba(30, 42, 82, 0.28), #05070f 72%);
+  text-align: center;
+}
+
+.demo-sky {
+  height: 78px;
+  display: grid;
+  place-items: center;
+}
+
+.demo-star {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.demo-star.twinkle {
+  background: radial-gradient(circle, #ffffff 0%, #8fd0ff 38%, rgba(80, 150, 220, 0) 72%);
+  animation: demo-twinkle 2.4s ease-in-out infinite;
+}
+
+.demo-star.glint {
+  background: radial-gradient(circle, #ffffff 0%, #ffe6a8 40%, rgba(255, 200, 110, 0) 72%);
+  animation: demo-twinkle 2.9s ease-in-out infinite;
+}
+
+.demo-spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  background: #ffffff;
+  clip-path: polygon(50% 0, 57% 43%, 100% 50%, 57% 57%, 50% 100%, 43% 57%, 0 50%, 43% 43%);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  animation: demo-glint 3.4s ease-in-out infinite;
+}
+
+@keyframes demo-twinkle {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes demo-glint {
+  0%, 68%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  77% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  85% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+}
+
+.demo-label {
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.demo-label b {
+  display: block;
+  color: #bfe6ff;
+  font-size: 12px;
+}
+
+.demo-label span {
+  color: var(--dim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-star.twinkle,
+  .demo-star.glint {
+    animation: none;
+    opacity: 1;
+  }
+
+  .demo-spark {
+    animation: none;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.intro-figure {
+  margin: 0;
+}
+
+.intro-figure img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.intro-figure figcaption {
+  margin-top: 7px;
+  font-size: 11px;
+  color: var(--dim);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.intro-steps {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.intro-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.intro-step-num {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: var(--accent);
+  border: 1px solid rgba(127, 211, 255, 0.4);
+  background: rgba(127, 211, 255, 0.08);
+}
+
+/* "Dive-in" zoom: three real renders crossfade while scaling up, looping so
+   the viewer feels the camera flying overview -> galaxy -> star system. */
+.intro-zoom {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: #05070f;
+}
+
+.zoom-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+/* Each layer zooms toward the target it will hand off to -- the overview dives
+   into the golden Sugars galaxy, the star field into one star, the system into
+   its sun -- so it reads as "enter THIS galaxy", not a zoom into empty center. */
+.zl1 {
+  transform-origin: 56% 15%;
+  animation: zoom-a 12s ease-in-out infinite;
+}
+
+.zl2 {
+  transform-origin: 49% 50%;
+  animation: zoom-b 12s ease-in-out infinite;
+}
+
+.zl3 {
+  transform-origin: 50% 50%;
+  animation: zoom-c 12s ease-in-out infinite;
+}
+
+@keyframes zoom-a {
+  0% { opacity: 1; transform: scale(1); }
+  30% { opacity: 1; transform: scale(1.55); }
+  33% { opacity: 0; transform: scale(1.65); }
+  90% { opacity: 0; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes zoom-b {
+  0%, 28% { opacity: 0; transform: scale(1.05); }
+  33% { opacity: 1; transform: scale(1.08); }
+  60% { opacity: 1; transform: scale(1.5); }
+  66% { opacity: 0; transform: scale(1.6); }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+
+@keyframes zoom-c {
+  0%, 61% { opacity: 0; transform: scale(1.05); }
+  66% { opacity: 1; transform: scale(1.08); }
+  92% { opacity: 1; transform: scale(1.42); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+.zoom-caption {
+  position: absolute;
+  left: 10px;
+  bottom: 9px;
+  height: 22px;
+}
+
+.zc {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  white-space: nowrap;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(5, 7, 15, 0.72);
+  border: 1px solid var(--line);
+  color: #bfe6ff;
+  font-size: 11px;
+  opacity: 0;
+}
+
+.zc1 {
+  animation: cap-a 12s ease-in-out infinite;
+}
+
+.zc2 {
+  animation: cap-b 12s ease-in-out infinite;
+}
+
+.zc3 {
+  animation: cap-c 12s ease-in-out infinite;
+}
+
+@keyframes cap-a {
+  0%, 28% { opacity: 1; }
+  34%, 94% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes cap-b {
+  0%, 30% { opacity: 0; }
+  36%, 60% { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+
+@keyframes cap-c {
+  0%, 63% { opacity: 0; }
+  69%, 96% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zoom-layer,
+  .zc {
+    animation: none;
+  }
+
+  .zl1 {
+    opacity: 1;
+    transform: none;
+  }
+
+  .zc1 {
+    opacity: 1;
+  }
+}
+
+.intro-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.intro-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.intro-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: rgba(155, 172, 225, 0.3);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.intro-dots button.active {
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
+.intro-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.intro-foot button {
+  font-size: 12px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.2s, background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.intro-skip {
+  border-color: transparent !important;
+  color: var(--dim) !important;
+}
+
+.intro-skip:hover {
+  color: var(--ink) !important;
+}
+
+.intro-nav .intro-prev:hover,
+.intro-nav .intro-next:hover {
+  border-color: var(--accent);
+}
+
+.intro-nav .intro-next {
+  background: rgba(127, 211, 255, 0.14);
+  border-color: rgba(127, 211, 255, 0.45);
+  color: #dff2ff;
+}
+
+.intro-foot button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (max-width: 720px) {
+  .intro-dialog {
+    padding: 22px 18px 18px;
+  }
+
+  .intro-title {
+    font-size: 17px;
+  }
+
+  .zc {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+
+  .intro-open {
+    left: 10px;
+    bottom: 56px;
+  }
+
+  .intro-foot {
+    flex-wrap: wrap;
+    row-gap: 14px;
+  }
+
+  .intro-nav {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+}

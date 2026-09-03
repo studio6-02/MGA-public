@@ -78,6 +78,79 @@
       <div class="locus" id="locus">focus: <b>intergalactic view</b></div>
       <button id="reset-view" type="button" class="reset-button">reset</button>
     </div>
+    <button id="intro-open" class="intro-open" type="button" aria-label="使用說明" title="使用說明">?</button>
+
+    <div class="intro" id="intro" hidden>
+      <div class="intro-backdrop" id="intro-backdrop"></div>
+      <div class="intro-dialog" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+        <button class="intro-close" id="intro-close" type="button" aria-label="關閉說明">×</button>
+
+        <section class="intro-page" data-page="0">
+          <h2 class="intro-title" id="intro-title">歡迎來到分子宇宙</h2>
+          <p>化學分子多如繁星。<b>Molecular Galaxy Atlas</b> 把 3,000 多個真實、可追溯來源的分子，依十個化學家族排成十座星系——在這裡，每一個分子就是一顆星。</p>
+          <figure class="intro-figure">
+            <img src="./intro/overview.jpg" alt="十座化學星系的總覽" loading="lazy" />
+            <figcaption>十座星系，對應十個化學家族</figcaption>
+          </figure>
+        </section>
+
+        <section class="intro-page" data-page="1" hidden>
+          <h2 class="intro-title">縮放與進入</h2>
+          <p>用<b>滾輪</b>或<b>雙指</b>縮放，<b>拖曳</b>可旋轉視角。一路拉近，宇宙會逐層展開：</p>
+          <ol class="intro-steps">
+            <li><span class="intro-step-num">1</span>從星系總覽拉近任一座星系</li>
+            <li><span class="intro-step-num">2</span>進入星系，看見一顆顆分子星體</li>
+            <li><span class="intro-step-num">3</span>選定分子後繼續拉近，星體展開成有恆星與行星的太陽系</li>
+          </ol>
+          <div class="intro-zoom" aria-hidden="true">
+            <img class="zoom-layer zl1" src="./intro/overview.jpg" alt="" />
+            <img class="zoom-layer zl2" src="./intro/field.jpg" alt="" />
+            <img class="zoom-layer zl3" src="./intro/system.jpg" alt="" />
+            <div class="zoom-caption">
+              <span class="zc zc1">① 星系總覽</span>
+              <span class="zc zc2">② 進入星系</span>
+              <span class="zc zc3">③ 進入星體</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="intro-page" data-page="2" hidden>
+          <h2 class="intro-title">點選與閃光</h2>
+          <p><b>點一顆星</b>，側邊的資訊卡就會顯示這個分子的結構、分子量、氫鍵數，以及藏在背後的<b>冷知識與參考文獻</b>。</p>
+          <p class="intro-flash"><b>會閃爍的星</b>＝擁有冷知識的分子；偶爾出現<b>鑽石般的爆閃</b>，代表特別值得一看。穿梭星系時，多留意這些發亮的星。</p>
+          <div class="intro-flash-demo" aria-hidden="true">
+            <div class="demo-cell">
+              <div class="demo-sky"><span class="demo-star twinkle"></span></div>
+              <div class="demo-label"><b>微微閃爍</b><span>有冷知識的分子</span></div>
+            </div>
+            <div class="demo-cell">
+              <div class="demo-sky"><span class="demo-star glint"><i class="demo-spark"></i></span></div>
+              <div class="demo-label"><b>鑽石爆閃</b><span>特別值得一看</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="intro-page" data-page="3" hidden>
+          <h2 class="intro-title">藏在宇宙裡的謎題</h2>
+          <p>進入分子的太陽系後，你會看到一顆恆星與幾顆行星。<b>恆星的大小</b>與<b>行星的數量</b>都不是隨機決定的——它們各自對應這個分子的某個化學性質。</p>
+          <p>猜猜看是哪些性質？答案，就藏在你探索的路上。</p>
+          <figure class="intro-figure">
+            <img src="./intro/system.jpg" alt="分子太陽系的恆星與行星" loading="lazy" />
+            <figcaption>恆星大小與行星數量，各有玄機</figcaption>
+          </figure>
+        </section>
+
+        <footer class="intro-foot">
+          <button class="intro-skip" id="intro-skip" type="button">略過</button>
+          <div class="intro-dots" id="intro-dots"></div>
+          <div class="intro-nav">
+            <button class="intro-prev" id="intro-prev" type="button">上一頁</button>
+            <button class="intro-next" id="intro-next" type="button">下一頁</button>
+          </div>
+        </footer>
+      </div>
+    </div>
+
     <div class="loading" id="loading">LOADING MGA DATASET...</div>
     <script type="module" src="/src/main.js"></script>
   </body>

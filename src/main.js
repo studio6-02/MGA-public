@@ -13,6 +13,17 @@ const toggleAllButton = document.querySelector("#toggle-all");
 const locus = document.querySelector("#locus");
 const resetButton = document.querySelector("#reset-view");
 
+const INTRO_SEEN_KEY = "mga-intro-seen-v1";
+const intro = {
+  root: document.querySelector("#intro"),
+  dialog: document.querySelector(".intro-dialog"),
+  pages: [...document.querySelectorAll(".intro-page")],
+  dots: document.querySelector("#intro-dots"),
+  prev: document.querySelector("#intro-prev"),
+  next: document.querySelector("#intro-next"),
+  page: 0
+};
+
 const state = {
   galaxies: [],
   molecules: [],
@@ -139,7 +150,16 @@ async function boot() {
   renderGalaxies(galaxies);
   renderLegend(galaxies);
   bindEvents();
+  introInit();
   loading.classList.add("done");
+
+  let introSeen = false;
+  try {
+    introSeen = localStorage.getItem(INTRO_SEEN_KEY) === "1";
+  } catch {
+    introSeen = false;
+  }
+  if (!introSeen) openIntro();
 }
 
 function sizeForMolecularWeight(molecularWeight, baseSize) {
@@ -448,7 +468,57 @@ function bindEvents() {
 }
 
 function onDocumentKeydown(event) {
-  if (event.key === "Escape") deselectMolecule();
+  if (event.key !== "Escape") return;
+  // The intro overlay owns Escape while it is open, so it closes instead of
+  // deselecting the molecule underneath it.
+  if (!intro.root.hidden) {
+    closeIntro();
+    return;
+  }
+  deselectMolecule();
+}
+
+function introInit() {
+  intro.pages.forEach((_, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("aria-label", `第 ${index + 1} 頁`);
+    dot.addEventListener("click", () => introGoTo(index));
+    intro.dots.append(dot);
+  });
+  document.querySelector("#intro-open").addEventListener("click", openIntro);
+  document.querySelector("#intro-close").addEventListener("click", closeIntro);
+  document.querySelector("#intro-skip").addEventListener("click", closeIntro);
+  document.querySelector("#intro-backdrop").addEventListener("click", closeIntro);
+  intro.prev.addEventListener("click", () => introGoTo(intro.page - 1));
+  intro.next.addEventListener("click", () => {
+    if (intro.page >= intro.pages.length - 1) closeIntro();
+    else introGoTo(intro.page + 1);
+  });
+}
+
+function introGoTo(index) {
+  const clamped = Math.max(0, Math.min(intro.pages.length - 1, index));
+  intro.page = clamped;
+  intro.pages.forEach((page, i) => (page.hidden = i !== clamped));
+  [...intro.dots.children].forEach((dot, i) => dot.classList.toggle("active", i === clamped));
+  intro.prev.disabled = clamped === 0;
+  intro.next.textContent = clamped === intro.pages.length - 1 ? "開始探索" : "下一頁";
+  intro.dialog.scrollTop = 0;
+}
+
+function openIntro() {
+  introGoTo(0);
+  intro.root.hidden = false;
+}
+
+function closeIntro() {
+  intro.root.hidden = true;
+  try {
+    localStorage.setItem(INTRO_SEEN_KEY, "1");
+  } catch {
+    /* private mode / storage disabled -- intro simply shows again next time */
+  }
 }
 
 function onPointerDown(event) {
